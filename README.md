@@ -124,23 +124,16 @@ This will create the new TypeScript Types from the GraphQL Schema in /src/__gene
 Depending on the size of your project or organizational preference, you may want to organize your schema directory based on feature.  
 
 Ex: 
-
+```
 src/
-
 ├─ schema/
-
 │ ├─ user/
-
 │ │ ├─ typeDefs.graphql
-
 │ │ ├─ resolvers.ts
-
 │ ├─ order/
-
 │ │ ├─ typeDefs.graphql
-
 │ │ ├─ resolvers.ts
-
+```
 9.  **Testing**
 JEST is configured for Typescript.  Example test cases are located in /src/__tests__/*.test.ts.  Tests and coverage report can be executed by running:
 
