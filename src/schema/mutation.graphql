@@ -1,0 +1,16 @@
+"SeedDatabase Input to specify the number of users and orders to generate"
+input SeedInput {
+  userCount: Int
+  orderCount: Int
+}
+
+"Returned Result from inserting Seed Data"
+type SeedResult {
+  usersInserted: Int!
+  ordersInserted: Int!
+}
+
+"Mutation to add Seed Data to DB"
+type Mutation {
+  seedDatabase(input: SeedInput = {}): SeedResult!
+}

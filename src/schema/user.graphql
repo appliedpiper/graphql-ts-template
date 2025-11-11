@@ -1,0 +1,13 @@
+"Website Users"
+type User {
+  "User ID"
+  _id: String
+  "User's first name"
+  firstName: String!
+  "User's last name"
+  lastName: String!
+  "User's email address"
+  email: Email!
+  "Orders the user has placed"
+  orders: [Order!]
+}

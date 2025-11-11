@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    image: mongo:8
+    restart: unless-stopped
+    # ports:
+    #   - "27017:27017"       # Remove Comment if you want to bind MongoDB Port to your machine
+    volumes:
+      - mongo-data:/data/db
+
+  # ========================
+  # GraphQL Development
+  # ========================
+  graphql-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: gql-dev           # Use gql-dev stage
+    ports:
+      - "4000:4000"
+    environment:
+      MONGO_URI: "mongodb://mongo:27017"
+      DB_NAME: "graphql_template"
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app             # Mount local code for hot reload
+      - /app/node_modules  # Prevent overwriting container-installed node_modules
+    command: ["pnpm", "dev"]  # Optional override for CMD
+
+  # ========================
+  # GraphQL Production
+  # ========================
+  graphql-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: gql-prod   # Use production stage
+    ports:
+      - "4000:4000"
+    environment:
+      MONGO_URI: "mongodb://mongo:27017"
+      DB_NAME: "graphql_template"
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

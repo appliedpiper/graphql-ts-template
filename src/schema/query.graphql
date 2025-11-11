@@ -1,0 +1,10 @@
+type Query {
+  "Return All Available Users"
+  users: [User!]!
+  "Return a Single User base on name"
+  user(name: String): User
+  "Return an Array of All Orders"
+  orders: [Order!]!
+  "Return an Order by ID"
+  order(id: ID): Order
+}

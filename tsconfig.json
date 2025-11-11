@@ -1,0 +1,45 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "paths": {      // Path Aliases
+      "@/*": ["src/*"], // Maps @src/ to the src/ directory
+      "@resolvers/*": ["src/resolvers/*"],
+      "@scalars/*": ["src/scalars/*"],
+    },
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": ["esnext", "DOM"],
+    "types": ["node", "jest"],
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": true,
+
+    // Stricter Typechecking Options
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    // "verbatimModuleSyntax": true,    // Would be nice but could not get this work work with Apollo imports
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  },
+  "files": ["src/types/graphql.d.ts"],
+  "include": ["src/**/*.ts", "__tests__/**/*.ts"],
+  "exclude": ["node_modules", "dist", "codegen.ts"]
+}

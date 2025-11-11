@@ -1,0 +1,4 @@
+"Custom Email Scalar that validates string is a valid email"
+scalar Email
+"Custom Date Scalar"
+scalar Date

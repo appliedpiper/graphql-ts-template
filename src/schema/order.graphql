@@ -1,0 +1,11 @@
+"User Requests"
+type Order {
+  "Order ID"
+  _id: String
+  "User ID of the User Placing the Order"
+  userId: String
+  "Total Amount of the Order"
+  total: Float
+  "Date the Order was created"
+  createdAt: Date
+}
