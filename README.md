@@ -128,11 +128,17 @@ Ex:
 src/
 
 ├─ schema/
+
 │ ├─ user/
+
 │ │ ├─ typeDefs.graphql
+
 │ │ ├─ resolvers.ts
+
 │ ├─ order/
+
 │ │ ├─ typeDefs.graphql
+
 │ │ ├─ resolvers.ts
 
 9.  **Testing**
