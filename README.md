@@ -49,8 +49,8 @@ npm install -g pnpm
 
 2. **Clone the Repository**
 ```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
+git clone https://github.com/appliedpiper/graphql-ts-template.git
+cd graphql-ts-template
 ```
 
 3. **Install the Dependencies**
@@ -78,12 +78,22 @@ Your server should now be running at http://localhost:4000/graphql (or the port 
 6. **Seeding the Database**
 Use the GraphQL mutation seedDatabase to populate user and orders collections.  Defaults: userCount = 5, orderCount = 10.
 ```
-mutation {
-  seedDatabase(userCount: 10, orderCount: 20) {
-    usersInserted
+mutation SeedDatabase($input: SeedInput) {
+  seedDatabase(input: $input) {
     ordersInserted
+    usersInserted
   }
 }
+```
+
+Define the SeedInput as part of the gql variables
+```
+  "variables": {
+    "input": {
+      "orderCount": 10,
+      "userCount": 20
+    }
+  }
 ```
 
 7. **Execute GQL Queries**
@@ -116,6 +126,7 @@ Depending on the size of your project or organizational preference, you may want
 Ex: 
 
 src/
+
 ├─ schema/
 │ ├─ user/
 │ │ ├─ typeDefs.graphql
