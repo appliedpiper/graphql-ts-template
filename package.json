@@ -19,7 +19,7 @@
     "@apollo/utils.keyvaluecache": "^4.0.0",
     "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/merge": "^9.1.2",
-    "dotenv": "^17.2.3",
+    "dotenv-flow": "^4.1.0",
     "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
     "mongodb": "^6.20.0",

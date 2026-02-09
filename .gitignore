@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 dist/
+# Ignore Local environment variables
 .env.local
 *.log
 .DS_Store
