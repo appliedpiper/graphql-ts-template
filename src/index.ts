@@ -1,4 +1,4 @@
-import env from '../env';
+import env from '@/lib/env';
 
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
@@ -7,6 +7,12 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs } from '@/schema/typeDefs';
 import { resolvers } from '@resolvers/resolvers';
 import { createContext } from '@/context/context';
+
+/**
+ * Server runtime entry point
+ * Initializes the Apollo Server with the defined typeDefs, resolvers, and context.
+ * DO NOT export types from this file.
+ */
 
 // Define Server Components
 const server = new ApolloServer({
