@@ -1,4 +1,5 @@
-import { GraphQLScalarType, Kind, ValueNode } from 'graphql';
+import { GraphQLScalarType, Kind } from 'graphql';
+import type { ValueNode } from 'graphql';
 
 const validateEmail = (email: unknown): string  => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -1,4 +1,4 @@
-import { Resolvers } from "@/__generated__/types";
+import type { Resolvers } from "@/__generated__/types";
 import { mutationResolvers } from "@resolvers/mutations";
 import { queryResolvers } from "@resolvers/queries";
 import { userResolvers } from "@resolvers/users";

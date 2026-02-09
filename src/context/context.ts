@@ -1,5 +1,6 @@
+import { initMongo } from "@/datasources/mongo";
+import type { MongoCollections } from "@/datasources/mongo";
 import type { KeyValueCache } from "@apollo/utils.keyvaluecache";  // Apollo cache type
-import { initMongo, MongoCollections } from "@/datasources/mongo";
 
 // Define the DataSource at @/datasource 
 // Then Add DataSources to the context

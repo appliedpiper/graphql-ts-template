@@ -15,6 +15,7 @@ const config: CodegenConfig = {
     "./src/__generated__/types.ts": {
       plugins: ["typescript", "typescript-resolvers"],
       config: {
+        useTypeImports: true,
         avoidOptionals: false,
         maybeValue: 'T | null | undefined',
         scalars: {

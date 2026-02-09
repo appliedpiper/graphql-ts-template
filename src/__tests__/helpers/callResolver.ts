@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import type { GraphQLResolveInfo } from 'graphql';
 import type { Resolver, ResolverFn } from '@/__generated__/types';
 /**
  * Safely unwraps a resolver and calls it with all four arguments

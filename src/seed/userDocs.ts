@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { Order, User } from "src/__generated__/types";
+import type { Order, User } from "src/__generated__/types";
 
 
 // /////////////////////////////////////////////////

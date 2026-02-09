@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null | undefined;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -14,8 +14,9 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** Custom Date Scalar */
   Date: { input: Date; output: Date; }
-  /** Custom Scalars */
+  /** Custom Email Scalar that validates string is a valid email */
   Email: { input: string; output: string; }
 };
 
@@ -31,20 +32,28 @@ export type MutationSeedDatabaseArgs = {
   input?: InputMaybe<SeedInput>;
 };
 
+/** User Requests */
 export type Order = {
   __typename?: 'Order';
+  /** Order ID */
   _id?: Maybe<Scalars['String']['output']>;
+  /** Date the Order was created */
   createdAt?: Maybe<Scalars['Date']['output']>;
+  /** Total Amount of the Order */
   total?: Maybe<Scalars['Float']['output']>;
+  /** User ID of the User Placing the Order */
   userId?: Maybe<Scalars['String']['output']>;
 };
 
 export type Query = {
   __typename?: 'Query';
+  /** Return an Order by ID */
   order?: Maybe<Order>;
+  /** Return an Array of All Orders */
   orders: Array<Order>;
+  /** Return a Single User base on name */
   user?: Maybe<User>;
-  /** Array of Users */
+  /** Return All Available Users */
   users: Array<User>;
 };
 
@@ -58,6 +67,7 @@ export type QueryUserArgs = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** SeedDatabase Input to specify the number of users and orders to generate */
 export type SeedInput = {
   orderCount?: InputMaybe<Scalars['Int']['input']>;
   userCount?: InputMaybe<Scalars['Int']['input']>;
@@ -70,12 +80,18 @@ export type SeedResult = {
   usersInserted: Scalars['Int']['output'];
 };
 
+/** Website Users */
 export type User = {
   __typename?: 'User';
+  /** User ID */
   _id?: Maybe<Scalars['String']['output']>;
+  /** User's email address */
   email: Scalars['Email']['output'];
+  /** User's first name */
   firstName: Scalars['String']['output'];
+  /** User's last name */
   lastName: Scalars['String']['output'];
+  /** Orders the user has placed */
   orders?: Maybe<Array<Order>>;
 };
 

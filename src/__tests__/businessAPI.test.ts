@@ -7,7 +7,7 @@ import type { User, Order, SeedResult } from '@/__generated__/types';
 import { generateUserDocs, generateOrderDocs } from '@/seed/userDocs';
 import { queryResolvers } from '@/resolvers/queries';
 import { mutationResolvers } from '@/resolvers/mutations';
-import { Context } from '@/context/context'; 
+import type { Context } from '@/context/context'; 
 import { callResolver } from '@/__tests__/helpers/callResolver';
 
 
