@@ -1,5 +1,5 @@
 {
-  "name": "graphql-ts-template",
+  "name": "@appliedpiper/graphql-template-contract",
   "version": "1.0.0",
   "private": false,
   "description": "A GraphQL server template built with TypeScript, Apollo Server, and MongoDB.",
