@@ -1,4 +1,4 @@
-import env from '../../env';
+import env from '../lib/env';
 import { MongoClient, Collection, Db } from "mongodb";
 import type { User, Order } from "@/__generated__/types";
 
