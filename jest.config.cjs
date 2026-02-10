@@ -1,7 +1,7 @@
-import type { Config } from 'jest';
+/** @type {import('jest').Config} */
 
 // Jest configuration to use ts-jest to allow TypeScript Files
-const config: Config = {
+module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src', '<rootDir>/src/__tests__'],  // Specify Location of source and test files
   
@@ -29,5 +29,3 @@ const config: Config = {
   //   '!src/__tests__/**',      // Ignore Test Files
   // ],
 };
-
-export default config;
