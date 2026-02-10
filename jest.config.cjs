@@ -3,6 +3,9 @@
 // Jest configuration to use ts-jest to allow TypeScript Files
 module.exports = {
   preset: 'ts-jest',
+
+  testEnvironment: 'node',  // Set Test Environment to Node.js
+
   roots: ['<rootDir>/src', '<rootDir>/src/__tests__'],  // Specify Location of source and test files
   
   // Map TS path aliases to actual folders
@@ -17,7 +20,13 @@ module.exports = {
     '**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: '<rootDir>/tsconfig.jest.json',  // Use a separate tsconfig for Jest
+        diagnostics: false,  // Disable TypeScript Diagnostics for faster test runs
+      },
+    ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   
