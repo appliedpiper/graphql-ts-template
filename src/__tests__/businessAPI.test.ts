@@ -114,7 +114,7 @@ describe('Query Resolvers', () => {
     await collections.users.insertMany(users);
 
     const context = createTestContext();
-    const wrappedResult = await callResolver(queryResolvers.user, undefined, { name: '5' }, context);
+    const wrappedResult = await callResolver(queryResolvers.userByName, undefined, { name: '5' }, context);
     const result = await Promise.resolve(wrappedResult); // unwrap single ResolverTypeWrapper
 
     expect(result).toBeDefined();
@@ -123,8 +123,29 @@ describe('Query Resolvers', () => {
 
   it('Returns null is lastname is undefined', async () => {
     const context = createTestContext();
-    const wrappedResult = await callResolver(queryResolvers.user, undefined, { name: undefined }, context);
+    const wrappedResult = await callResolver(queryResolvers.userByName, undefined, { name: undefined }, context);
     const result = await Promise.resolve(wrappedResult); // unwrap single ResolverTypeWrapper
+
+    expect(result).toBeNull();
+  });
+
+  it('Retrieves a single user by ID', async () => {
+    const users = generateUserDocs(10);
+    await collections.users.insertMany(users);
+    const context = createTestContext();
+    const userId = users[3]._id;
+
+    const wrappedResult = await callResolver(queryResolvers.userById, undefined, { id: userId }, context);
+    const result = await Promise.resolve(wrappedResult);
+
+    expect(result).toBeDefined();
+    expect(result?._id).toBe(userId);
+  });
+
+  it('Returns null if user ID is undefined', async () => {
+    const context = createTestContext();
+    const wrappedResult = await callResolver(queryResolvers.userById, undefined, { id: undefined }, context);
+    const result = await Promise.resolve(wrappedResult);
 
     expect(result).toBeNull();
   });

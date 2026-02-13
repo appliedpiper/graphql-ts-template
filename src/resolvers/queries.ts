@@ -11,8 +11,15 @@ export const queryResolvers: QueryResolvers<Context> = {
     return await users.find({}).toArray();
   },
 
+  // Get a single user by ID
+  async userById(_, { id }, { dataSources }) {
+    const { users } = dataSources.businessAPI;
+    if (!id) return null;
+    return await users.findOne({_id: id});
+  },
+
   // Get a single user by name
-  async user(_, { name }, { dataSources }) {
+  async userByName(_, { name }, { dataSources }) {
     const { users } = dataSources.businessAPI;
     if (!name) return null;
     return await users.findOne({lastName: name});

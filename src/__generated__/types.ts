@@ -51,8 +51,10 @@ export type Query = {
   order?: Maybe<Order>;
   /** Return an Array of All Orders */
   orders: Array<Order>;
+  /** Return a Single User base on ID */
+  userById?: Maybe<User>;
   /** Return a Single User base on name */
-  user?: Maybe<User>;
+  userByName?: Maybe<User>;
   /** Return All Available Users */
   users: Array<User>;
 };
@@ -63,7 +65,12 @@ export type QueryOrderArgs = {
 };
 
 
-export type QueryUserArgs = {
+export type QueryUserByIdArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryUserByNameArgs = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -222,7 +229,8 @@ export type OrderResolvers<ContextType = any, ParentType extends ResolversParent
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   order?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, Partial<QueryOrderArgs>>;
   orders?: Resolver<Array<ResolversTypes['Order']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, Partial<QueryUserArgs>>;
+  userById?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, Partial<QueryUserByIdArgs>>;
+  userByName?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, Partial<QueryUserByNameArgs>>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
 };
 
