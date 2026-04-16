@@ -10,7 +10,16 @@ type SeedResult {
   ordersInserted: Int!
 }
 
-"Mutation to add Seed Data to DB"
+input AddUserInput {
+  firstName: String!
+  lastName: String!
+  email: Email!
+}
+
 type Mutation {
+  "Mutation to add Seed Data to DB"
   seedDatabase(input: SeedInput = {}): SeedResult!
+
+  "Mutation to add a new user to the DB"
+  addUser(input: AddUserInput!): User!
 }

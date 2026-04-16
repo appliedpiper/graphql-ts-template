@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import type { MutationResolvers } from "@/__generated__/types";
 import { generateUserDocs, generateOrderDocs } from "@/seed/userDocs";
 
@@ -29,5 +30,22 @@ export const mutationResolvers: MutationResolvers = {
       usersInserted: userResult.insertedCount,
       ordersInserted: orderResult.insertedCount,
     }
+  },
+  
+  // Add a new user to the database
+  async addUser(_, { input }, { dataSources }) {
+    const { users } = dataSources.businessAPI;
+    const newUser = {
+      _id: new ObjectId(),
+      firstName: input.firstName,
+      lastName: input.lastName,
+      email: input.email,
+    };
+    const result = await users.insertOne(newUser);
+    return {
+      ...newUser,
+      _id: result.insertedId,
+    };
   }
+  
 };

@@ -20,14 +20,26 @@ export type Scalars = {
   Email: { input: string; output: string; }
 };
 
-/** Mutation to add Seed Data to DB */
+export type AddUserInput = {
+  email: Scalars['Email']['input'];
+  firstName: Scalars['String']['input'];
+  lastName: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Mutation to add a new user to the DB */
+  addUser: User;
+  /** Mutation to add Seed Data to DB */
   seedDatabase: SeedResult;
 };
 
 
-/** Mutation to add Seed Data to DB */
+export type MutationAddUserArgs = {
+  input: AddUserInput;
+};
+
+
 export type MutationSeedDatabaseArgs = {
   input?: InputMaybe<SeedInput>;
 };
@@ -175,6 +187,7 @@ export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = 
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AddUserInput: AddUserInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Date: ResolverTypeWrapper<Scalars['Date']['output']>;
   Email: ResolverTypeWrapper<Scalars['Email']['output']>;
@@ -192,6 +205,7 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AddUserInput: AddUserInput;
   Boolean: Scalars['Boolean']['output'];
   Date: Scalars['Date']['output'];
   Email: Scalars['Email']['output'];
@@ -216,6 +230,7 @@ export interface EmailScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationAddUserArgs, 'input'>>;
   seedDatabase?: Resolver<ResolversTypes['SeedResult'], ParentType, ContextType, RequireFields<MutationSeedDatabaseArgs, 'input'>>;
 };
 

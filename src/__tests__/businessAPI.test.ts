@@ -229,6 +229,22 @@ describe('Mutation Resolvers - seedDatabase', () => {
     expect(users.length).toBe(20);
     expect(orders.length).toBe(50);
   });
+
+  it('Adds a new user to the database', async () => {
+    const context = createTestContext();
+    const newUserInput = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+    };
+
+    const wrappedResult = await callResolver(mutationResolvers.addUser, undefined, { input: newUserInput }, context);
+    const result = await Promise.resolve(wrappedResult);
+
+    expect(result.firstName).toBe(newUserInput.firstName);
+    expect(result.lastName).toBe(newUserInput.lastName);
+    expect(result.email).toBe(newUserInput.email);
+  });
 });
 
 describe('Helpers - callResolver', () => {
