@@ -11,6 +11,7 @@ dotenvFlow.config();
 // Declare the types for your ENV variables here:
 const ENVSchema = z.object({
   GQL_PORT: z.string(),
+  PUBLIC_URL: z.string(),
   MONGO_URI: z.string(),
   DB_NAME: z.string(),
 });
