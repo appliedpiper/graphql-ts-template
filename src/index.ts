@@ -39,6 +39,11 @@ async function startServer() {
   // Apply Express Middleware for Apollo Server
   app.use(requestTracker.middleware());
 
+  // Base URL Redirect
+  app.get('/', (req, res) => {
+    res.redirect('/graphql');
+  });
+
   // GraphQL Endpoint
   app.use(
     '/graphql',
