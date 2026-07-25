@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 dist/
+.pnpm-store/
 # Ignore Local environment variables
 .env.local
 *.log
