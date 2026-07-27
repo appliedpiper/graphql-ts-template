@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@apollo/protobufjs'
+  - esbuild
+  - mongodb-memory-server
+  - unrs-resolver
