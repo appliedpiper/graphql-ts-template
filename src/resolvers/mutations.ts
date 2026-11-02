@@ -1,10 +1,23 @@
 import { ObjectId } from "mongodb";
+import { GraphQLError } from "graphql";
 import type { MutationResolvers } from "@/__generated__/types";
 import { generateUserDocs, generateOrderDocs } from "@/seed/userDocs";
 
 export const mutationResolvers: MutationResolvers = {
-  // Import some example data into the users and orders collections
+  // Import some example data into the users and orders collections.
+  //
+  // DESTRUCTIVE: deletes every user and order before inserting. Requires the
+  // admin role (see the policy map in resolvers.ts) and additionally refuses to
+  // run in production, because no amount of authorization makes wiping the
+  // production database from a GraphQL mutation a good idea. Local/dev only.
   async seedDatabase(_, args, { dataSources}) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new GraphQLError(
+        'seedDatabase is disabled in production.',
+        { extensions: { code: 'FORBIDDEN', http: { status: 403 } } },
+      );
+    }
+
     // Extract User and Order Counts
     // This is done without destructing in case the input is not defined
     const userCount = args?.input?.userCount ?? 5;
