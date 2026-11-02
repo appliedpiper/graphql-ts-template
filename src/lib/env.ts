@@ -14,6 +14,12 @@ const ENVSchema = z.object({
   PUBLIC_URL: z.string(),
   MONGO_URI: z.string(),
   DB_NAME: z.string(),
+
+  // Verifies Clerk session tokens in the Apollo context. Required, and parsed
+  // at import — the server refuses to boot without it rather than starting with
+  // verification silently disabled. Copy the value from frontend/.env.local;
+  // both sides must point at the same Clerk instance.
+  CLERK_SECRET_KEY: z.string().min(1),
 });
 
 export default ENVSchema.parse(process.env);
