@@ -10,6 +10,7 @@ import http from 'http';
 import { typeDefs } from '@/schema/typeDefs';
 import { resolvers } from '@resolvers/resolvers';
 import { createContext } from '@/context/context';
+import { createSessionVerifier } from '@/lib/auth/verifySession';
 import { createShutdownHandler } from '@/server/shutdown';
 import { createRequestTracker } from '@/server/requestTracker';
 
@@ -27,6 +28,10 @@ const server = new ApolloServer({
 
 const publicUrl = env.PUBLIC_URL || 'http://localhost';
 const port = env.GQL_PORT ? parseInt(env.GQL_PORT, 10) : 4000;
+
+// Built once at startup so the Clerk SDK's JWKS cache is shared across
+// requests rather than refetched per request.
+const verifySession = createSessionVerifier(env.CLERK_SECRET_KEY);
 
 async function startServer() {
   const app = express();
@@ -49,7 +54,11 @@ async function startServer() {
     '/graphql',
     express.json(),
     expressMiddleware(server, {
-      context: async () => createContext({ cache: server.cache }),
+      // `req` is what carries the Authorization header — the context reads the
+      // bearer token off it and verifies the caller. Dropping it here would
+      // silently make every request anonymous.
+      context: async ({ req }) =>
+        createContext({ cache: server.cache, req, verifySession }),
     })
   );
 

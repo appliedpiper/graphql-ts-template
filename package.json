@@ -17,6 +17,7 @@
     "build": "tsc && tsc-alias",
     "prebuild": "pnpm run generate",
     "dev": "tsx watch ./src/index.ts",
+    "dev:token": "tsx ./src/scripts/devToken.ts",
     "start": "pnpm run build && node ./dist/index.js",
     "test": "jest",
     "generate": "graphql-codegen"
@@ -29,6 +30,7 @@
     "@apollo/server": "^5.0.0",
     "@apollo/utils.keyvaluecache": "^4.0.0",
     "@as-integrations/express5": "^1.1.2",
+    "@clerk/backend": "^3.26.5",
     "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/merge": "^9.1.2",
     "dotenv-flow": "^4.1.0",

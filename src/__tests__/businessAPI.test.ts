@@ -52,6 +52,12 @@ const createTestContext = (): Context => ({
     set: async () => {},
     delete: async () => {},
   },
+  // These tests call the *unwrapped* resolvers directly (they import
+  // queryResolvers / mutationResolvers), so the auth guards applied in
+  // resolvers.ts never run here and this identity is not what makes them pass.
+  // It is an admin so the assertions stay valid if these are ever re-pointed at
+  // the composed `resolvers` map. Guard coverage lives in resolverGuards.test.ts.
+  auth: { userId: 'user_test_admin', role: 'admin' },
 });
 
 // ////////////////////////////////////////////
